@@ -1,6 +1,6 @@
 # bettingInTheIPAT
-IPATで馬券購入するプログラムです。
-ローカルビルド、およびAWS Lambdaで動作します。
+IPATで馬券購入するプログラムです。  
+ローカルビルド、およびAWS Lambdaで動作します。  
 Headless Chrome, puppeteerを使用しています。
 
 ## 動作環境
