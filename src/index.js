@@ -16,7 +16,7 @@ exports.run = async (browser, event) => {
   // implement here
   const query = {
     place: '東京',
-    raceNo: '11',
+    raceNo: '10',
     racerNo: '1',
     amount: '100',
   };
@@ -48,7 +48,7 @@ exports.run = async (browser, event) => {
     await page.type('[name="inetid"]', account.INETID);
     await Promise.all([
       page.click('.button a'),
-      page.waitFor(3000), // 描画を待つ
+      page.waitForSelector('[name="i"]'),
     ]);
     if (await page.$('[name="i"]') === null) {
       throw new Error('inetid login error');
@@ -69,7 +69,7 @@ exports.run = async (browser, event) => {
       && await page.$('[ui-sref="home"]') !== null) {
       await Promise.all([
         page.click('[ui-sref="home"]'),
-        page.waitFor(3000),
+        page.waitForSelector('[ui-sref="bet.basic"]'),
       ]);
     }
 
@@ -85,7 +85,7 @@ exports.run = async (browser, event) => {
 
     await Promise.all([
       page.click('[ui-sref="bet.basic"]'),
-      page.waitFor(3000),
+      page.waitForSelector('.place-name'),
     ]);
 
     // 場所指定
@@ -101,7 +101,7 @@ exports.run = async (browser, event) => {
       if (placeName.slice(0, 2) == query.place) {
         await Promise.all([
           placeItem.click(),
-          page.waitFor(5000),
+          page.waitForSelector('.race-no'),
         ]);
         break;
       }
@@ -120,7 +120,7 @@ exports.run = async (browser, event) => {
       if (raceNo == query.raceNo) {
         await Promise.all([
           raceItem.click(),
-          page.waitFor(3000),
+          page.waitForSelector('#bet-basic-type'),
         ]);
         break;
       }
@@ -145,7 +145,7 @@ exports.run = async (browser, event) => {
     }
     await Promise.all([
       page.select('#bet-basic-type', betValue),
-      page.waitFor(3000),
+      page.waitForSelector('.winplace-table'),
     ]);
     console.log('式別を指定しました');
 
@@ -173,7 +173,7 @@ exports.run = async (browser, event) => {
             'clickCount': 1,
             'delay': 0,
           }),
-          page.waitFor(3000),
+          page.waitForSelector('.selection-amount'),
         ]);
         isSetRacer = true;
         break;
@@ -223,7 +223,7 @@ exports.run = async (browser, event) => {
     const purchaceButton = await betConfirmBoxTableRecords[5].$('button');
     await Promise.all([
       purchaceButton.click(),
-      page.waitFor(3000),
+      page.waitForSelector('error-window'),
     ]);
 
     const commonConfirmBox = await page.$('error-window');
