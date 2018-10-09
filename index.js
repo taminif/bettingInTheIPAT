@@ -3,7 +3,6 @@ const launchChrome = require('@serverless-chrome/lambda');
 const CDP = require('chrome-remote-interface');
 const puppeteer = require('puppeteer');
 const account = require('./account');
-const account = require('./account');
 
 exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
