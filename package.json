@@ -15,7 +15,7 @@
     "puppeteer": "^2.1.1"
   },
   "devDependencies": {
-    "aws-sdk": "^2.327.0",
+    "aws-sdk": "^2.1364.0",
     "chrome-launcher": "^0.13.2"
   }
 }
